@@ -1,0 +1,4 @@
+{
+	"ansible.python.interpreterPath": "/bin/python3",
+	"exportall.config.folderListener": ["/src/routes", "/src/lib", "/src/components", "/src/routes/items"]
+}
