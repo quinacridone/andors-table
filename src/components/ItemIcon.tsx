@@ -68,10 +68,10 @@ export const ItemIcon = ({ item }: Props) => {
 	}, [item]);
 
 	return (
-		<div className="tooltip relative" data-tip={item.displaytype}>
+		<div className="tooltip tooltip-right relative" data-tip={item.displaytype}>
 			<div style={style1} />
 			<div
-				className="absolute left-0 top-0 z-10"
+				className="absolute left-0 top-0"
 				style={{
 					width: "32px",
 					height: "32px",

@@ -38,7 +38,7 @@ const menuItems = [
 
 export const NavBar = () => {
 	return (
-		<div className="navbar bg-base-100">
+		<div className="navbar flex-grow-0 bg-base-100">
 			<div className="navbar-start">
 				<div className="dropdown">
 					<span className="btn-ghost btn lg:hidden">

@@ -17,7 +17,7 @@ export type Item = {
 	conditionsCount: number;
 	conv_links: any;
 	displaytype: string;
-	equipEffect: any;
+	equipEffect: EquipEffect;
 	iconBg: number;
 	iconID: string;
 	id: string;
@@ -27,7 +27,21 @@ export type Item = {
 };
 
 type EquipEffect = {
+	increaseAttackDamage: { min: number; max: number };
+	increaseMaxHP: number;
+	increaseMaxAP: number;
+	increaseMoveCost: number;
+	increaseUseItemCost: number;
+	increaseReequipCost: number;
+	increaseAttackCost: number;
+	increaseAttackChance: number;
 	increaseBlockChance: number;
+	increaseMinDamage: number;
+	increaseMaxDamage: number;
+	setNonWeaponDamageModifier: number;
+	increaseCriticalSkill: number;
+	setCriticalMultiplier: number;
+	increaseDamageResistance: number;
 };
 
 export type CategoryLink = {

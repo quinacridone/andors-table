@@ -2,25 +2,16 @@
 @tailwind components;
 @tailwind utilities;
 
-table {
-	border: 1px solid lightgray;
+/* table {
+	border: 1px solid rgba(255, 255, 255, 0.2);
+} */
+
+/* tbody {
+	border-bottom: 1px solid rgba(255, 255, 255, 0.2);
 }
 
-tbody {
-	border-bottom: 1px solid lightgray;
-}
-
-th,
 td {
-	border-bottom: 1px solid lightgray;
-	border-right: 1px solid lightgray;
+	border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+	border-right: 1px solid rgba(255, 255, 255, 0.2);
 	padding: 2px 4px;
-}
-
-tfoot {
-	color: gray;
-}
-
-tfoot th {
-	font-weight: normal;
-}
+} */

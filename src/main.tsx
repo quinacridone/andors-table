@@ -3,10 +3,10 @@ import ReactDOM from "react-dom/client";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import "./index.css";
 import { getDefaultStore } from "jotai";
-import { Armor, Home, Items } from "@/routes";
+import { Armor, Body, Feet, Hand, Head, Home, Items, LeftRing, Neck, Other, Shield, Use, Weapon } from "@/routes";
 import { load } from "@/lib";
 import { databaseAtom } from "@/data";
-import { ErrorPage } from "./components";
+import { ErrorPage, NewTable } from "./components";
 
 const defaultStore = getDefaultStore();
 
@@ -28,12 +28,52 @@ const router = createBrowserRouter([
 				children: [
 					{
 						path: "body",
-						element: <Armor />,
+						element: <Body />,
 						errorElement: <ErrorPage />,
 					},
 					{
 						path: "weapon",
-						element: <Items />,
+						element: <Weapon />,
+						errorElement: <ErrorPage />,
+					},
+					{
+						path: "shield",
+						element: <Shield />,
+						errorElement: <ErrorPage />,
+					},
+					{
+						path: "head",
+						element: <Head />,
+						errorElement: <ErrorPage />,
+					},
+					{
+						path: "hand",
+						element: <Hand />,
+						errorElement: <ErrorPage />,
+					},
+					{
+						path: "feet",
+						element: <Feet />,
+						errorElement: <ErrorPage />,
+					},
+					{
+						path: "leftring",
+						element: <LeftRing />,
+						errorElement: <ErrorPage />,
+					},
+					{
+						path: "neck",
+						element: <Neck />,
+						errorElement: <ErrorPage />,
+					},
+					{
+						path: "use",
+						element: <Use />,
+						errorElement: <ErrorPage />,
+					},
+					{
+						path: "other",
+						element: <Other />,
 						errorElement: <ErrorPage />,
 					},
 				],
