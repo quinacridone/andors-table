@@ -4,48 +4,6 @@ const menuItems = [
 	{
 		label: "Items",
 		path: "items",
-		subMenu: [
-			{
-				label: "Armor",
-				path: "body",
-			},
-			{
-				label: "Weapon",
-				path: "weapon",
-			},
-			{
-				label: "Shield",
-				path: "shield",
-			},
-			{
-				label: "Helm",
-				path: "head",
-			},
-			{
-				label: "Glove",
-				path: "hand",
-			},
-			{
-				label: "Boot",
-				path: "feet",
-			},
-			{
-				label: "Ring",
-				path: "leftring",
-			},
-			{
-				label: "Necklace",
-				path: "neck",
-			},
-			{
-				label: "Usable",
-				path: "use",
-			},
-			{
-				label: "Other",
-				path: "other",
-			},
-		],
 	},
 	{
 		label: "Monsters",
@@ -113,28 +71,10 @@ export const NavBar = () => {
 			</div>
 			<div className="navbar-center hidden lg:flex">
 				<ul className="menu menu-horizontal px-1">
-					{menuItems.map(({ label, path, subMenu }) => (
-						<>
-							{subMenu && subMenu.length > 0 && (
-								<li tabIndex={0} key={path}>
-									<details>
-										<summary>{label}</summary>
-										<ul className="menu-dropdown-toggle z-[100] p-2">
-											{subMenu.map((item) => (
-												<li key={item.path}>
-													<Link to={`${path}/${item.path}`}>{item.label}</Link>
-												</li>
-											))}
-										</ul>
-									</details>
-								</li>
-							)}
-							{!subMenu && (
-								<li key={path}>
-									<Link to={`${path}`}>{label}</Link>
-								</li>
-							)}
-						</>
+					{menuItems.map(({ label, path }) => (
+						<li key={path}>
+							<Link to={`${path}`}>{label}</Link>
+						</li>
 					))}
 				</ul>
 			</div>

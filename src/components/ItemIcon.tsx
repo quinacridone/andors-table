@@ -55,7 +55,7 @@ export const ItemIcon = ({ item }: Props) => {
 				style = {
 					width: "32px",
 					height: "32px",
-					backgroundImage: "url('/drawable/ui_selections.png')",
+					backgroundImage: `url('${serverURL}/drawable/ui_selections.png')`,
 					backgroundPosition: `${item.iconBg * 32}px 0px`,
 				};
 			} else {
@@ -69,13 +69,18 @@ export const ItemIcon = ({ item }: Props) => {
 	}, [item]);
 
 	return (
+		// <div style={{ width: 16, height: 16 }} className="flex">
+		// 	<img
+		// 		style={{ objectFit: "none", objectPosition: `${-position.x}px ${-position.y}px`, width: 32, height: 32 }}
+		// 		src={src}></img>
+		// </div>
 		<div className="tooltip tooltip-right relative" data-tip={item.displaytype}>
 			<div style={style1} />
 			<div
 				className="absolute left-0 top-0"
 				style={{
-					width: "32px",
-					height: "32px",
+					width: "100%",
+					height: "100%",
 					backgroundImage: `url('${src}')`,
 					backgroundPosition: `${-position.x}px ${-position.y}px`,
 				}}
