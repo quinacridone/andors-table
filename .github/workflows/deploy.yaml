@@ -42,8 +42,8 @@ jobs:
           cache: "npm"
       - name: Install dependencies
         run: npm install
-      - name: Link assets
-        run: make link
+      - name: Copy assets
+        run: make copy
       - name: Build
         run: npm run build
       - name: Setup Pages
