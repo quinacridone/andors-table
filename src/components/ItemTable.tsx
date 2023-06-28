@@ -52,7 +52,7 @@ export const ItemTable = ({ data, columns, category }: Props) => {
 			<div className="m-2 h-full">
 				<div className="overflow-auto" style={{ height: "calc(100vh - 200px)" }}>
 					<table className="table-zebra table border-collapse text-xs">
-						<thead className="sticky top-0 z-20 bg-slate-800">
+						<thead className="sticky top-0 z-20 bg-neutral-content">
 							{table.getHeaderGroups().map((headerGroup) => (
 								<tr key={headerGroup.id}>
 									{headerGroup.headers.map((header) => {

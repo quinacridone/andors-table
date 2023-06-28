@@ -1,5 +1,6 @@
 import { Item } from "@/data";
 import { useEffect, useState } from "react";
+import { serverURL } from "../lib";
 
 type Props = {
 	item: Item;
@@ -19,7 +20,7 @@ type Props = {
 
 const getSrc = (file: string) => {
 	if (!file) return;
-	return "/drawable/" + file + ".png";
+	return `${serverURL}/drawable/${file}.png`;
 };
 
 const getPosition = (index: number, width: number, d: { x: number; y: number }) => {

@@ -1,10 +1,9 @@
 import { XMLParser } from "fast-xml-parser";
 import { calculateCost } from "./calculator";
 
+export const serverURL = `${window.location.origin}/andors-table`;
 export const status = { progress: 0, maxProgress: 0 };
 export let temp: any = {};
-const serverURL = `${window.location.origin}/andors-table`;
-console.log(serverURL);
 
 export const load = async () => {
 	temp = {};
