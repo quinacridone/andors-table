@@ -30,6 +30,11 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v3
+      - name: Checkout Andor's Trail
+        uses: actions/checkout@v3
+        with:
+          repository: AndorsTrailRelease/andors-trail
+          path: "./andors-trail"
       - name: Set up Node
         uses: actions/setup-node@v3
         with:
@@ -37,6 +42,8 @@ jobs:
           cache: "npm"
       - name: Install dependencies
         run: npm install
+      - name: Link assets
+        run: make install
       - name: Build
         run: npm run build
       - name: Setup Pages

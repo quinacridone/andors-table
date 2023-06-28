@@ -92,7 +92,7 @@ export const columns = [
 	columnHelper.accessor("equipEffect", {
 		id: "nonWeaponDamageModifier",
 		header: () => "Damage Modifier",
-		cell: (info) => numberRender(info.renderValue()?.setNonWeaponDamageModifier),
+		cell: (info) => numberRender(info.renderValue()?.setNonWeaponDamageModifier || 100),
 	}),
 	columnHelper.accessor("equipEffect", {
 		id: "damageResistance",

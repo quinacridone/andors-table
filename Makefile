@@ -1,4 +1,4 @@
-ANDORS_TRAIL_REPO = ${HOME}/repos/personal/andors-trail
+ANDORS_TRAIL_REPO = ./andors-trail
 
 link:
 	rm public/[rxdv][arm]* || true

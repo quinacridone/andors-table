@@ -51,7 +51,7 @@ export const ItemTable = ({ data, columns, category }: Props) => {
 		<>
 			<div className="m-2 h-full">
 				<div className="overflow-auto" style={{ height: "calc(100vh - 200px)" }}>
-					<table className="table-zebra border-collapse text-xs">
+					<table className="table-zebra table border-collapse text-xs">
 						<thead className="sticky top-0 z-20 bg-slate-800">
 							{table.getHeaderGroups().map((headerGroup) => (
 								<tr key={headerGroup.id}>
@@ -78,7 +78,7 @@ export const ItemTable = ({ data, columns, category }: Props) => {
 						<tbody>
 							{table.getRowModel().rows.map((row) => {
 								return (
-									<tr key={row.id}>
+									<tr key={row.id} className="hover">
 										{row.getVisibleCells().map((cell) => {
 											return (
 												<td className="whitespace-nowrap border border-neutral-900 p-2" key={cell.id}>
