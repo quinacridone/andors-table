@@ -3,6 +3,8 @@ import { calculateCost } from "./calculator";
 
 export const status = { progress: 0, maxProgress: 0 };
 export let temp: any = {};
+const serverURL = `${window.location.origin}/andors-table`;
+console.log(serverURL);
 
 export const load = async () => {
 	temp = {};
@@ -12,7 +14,7 @@ export const load = async () => {
 };
 
 const getListOfResources = async () => {
-	const xmlData = await fetch("/values/loadresources.xml", {
+	const xmlData = await fetch(`${serverURL}/values/loadresources.xml`, {
 		headers: {
 			"Content-Type": "text/xml",
 			Accept: "text/xml",
@@ -60,7 +62,7 @@ const loadJSONResource = async (resource: any, name: any, counter: any) => {
 };
 
 const fetchJSONData = async (fileName: any, name: any, counter: any) => {
-	const jsonData = await fetch(`${fileName}.json`, {
+	const jsonData = await fetch(`${serverURL}${fileName}.json`, {
 		headers: {
 			"Content-Type": "application/json",
 			Accept: "application/json",

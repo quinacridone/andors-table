@@ -128,3 +128,8 @@ dist
 .yarn/build-state.yml
 .yarn/install-state.gz
 .pnp.*
+
+/public/drawable
+/public/raw
+/public/values
+/public/xml
