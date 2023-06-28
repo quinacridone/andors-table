@@ -1,8 +1,8 @@
-import { useAtomValue } from "jotai";
-import { useState, useEffect } from "react";
-import { columns } from ".";
 import { ItemTable } from "@/components";
-import { databaseAtom, Item } from "@/data";
+import { Item, databaseAtom } from "@/data";
+import { useAtomValue } from "jotai";
+import { useEffect, useState } from "react";
+import { columns } from ".";
 
 export const LeftRing = () => {
 	const data = useAtomValue(databaseAtom);

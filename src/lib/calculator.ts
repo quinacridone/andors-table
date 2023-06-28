@@ -1,4 +1,4 @@
-export const calculateCost = (o, isWeapon) => {
+export const calculateCost = (o: any, isWeapon: any) => {
 	if (o.hasManualPrice) return o.baseMarketCost;
 	const costEquipStats = calculateCostEquipEffect(o.equipEffect, isWeapon);
 	const costUse = calculateUseCost(o.useEffect);
@@ -7,7 +7,7 @@ export const calculateCost = (o, isWeapon) => {
 	return Math.max(1, costEquipStats + costUse + costHit + costKill);
 };
 
-const calculateCostEquipEffect = (o, isWeapon) => {
+const calculateCostEquipEffect = (o: any, isWeapon: any) => {
 	if (!o) return 0;
 	const {
 		increaseBlockChance,
@@ -64,22 +64,22 @@ const calculateCostEquipEffect = (o, isWeapon) => {
 	].reduce((a, b) => Math.trunc(a || 0) + Math.trunc(b || 0), 0);
 };
 
-const calculateUseCost = (o) => {
+const calculateUseCost = (o: any) => {
 	if (!o) return 0;
 	const averageHPBoost = averagef(o.increaseCurrentHP);
 	if (averageHPBoost == 0) return 0;
 	const costBoostHP = 0.1 * signum(averageHPBoost) * Math.pow(Math.abs(averageHPBoost), 2) + 3 * averageHPBoost;
 	return Math.trunc(costBoostHP);
 };
-const signum = (e) => {
+const signum = (e: any) => {
 	if (e > 0) return 1;
 	if (e < 0) return -1;
 	return 0;
 };
-const averagef = (o) => {
+const averagef = (o: any) => {
 	return ((o?.max || 0) + (o?.min || 0)) / 2;
 };
-const calculatePointsCost = (o, hpBase, apBase) => {
+const calculatePointsCost = (o: any, hpBase: any, apBase: any) => {
 	if (!o) return 0;
 	const averageHPBoost = averagef(o.increaseCurrentHP);
 	const averageAPBoost = averagef(o.increaseCurrentAP);
@@ -90,10 +90,10 @@ const calculatePointsCost = (o, hpBase, apBase) => {
 	return Math.trunc(costBoostHP) + Math.trunc(costBoostAP);
 };
 
-const calculateHitCost = (o) => {
+const calculateHitCost = (o: any) => {
 	return calculatePointsCost(o, 2770, 3100);
 };
 
-const calculateKillCost = (o) => {
+const calculateKillCost = (o: any) => {
 	return calculatePointsCost(o, 923, 1033);
 };

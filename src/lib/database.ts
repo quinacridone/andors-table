@@ -1,7 +1,6 @@
 import { XMLParser } from "fast-xml-parser";
 import { calculateCost } from "./calculator";
 
-export const ssr = false;
 export const status = { progress: 0, maxProgress: 0 };
 export let temp: any = {};
 
@@ -25,14 +24,14 @@ const getListOfResources = async () => {
 		attributeNamePrefix: "a_",
 	});
 	const xml = parser.parse(xmlString);
-	const resources = xml.resources.array.reduce((acc, current) => {
+	const resources = xml.resources.array.reduce((acc: any, current: any) => {
 		acc[current["a_name"]] = current.item;
 		return acc;
 	}, {});
 	return Promise.resolve(resources);
 };
 
-const loadAllJSONResources = async (resources) => {
+const loadAllJSONResources = async (resources: any) => {
 	const resourcesList = [
 		[resources.loadresource_itemcategories, "itemcategories"],
 		[resources.loadresource_items, "items"],
@@ -54,13 +53,13 @@ const loadAllJSONResources = async (resources) => {
 	);
 };
 
-const loadJSONResource = async (resource, name, counter) => {
+const loadJSONResource = async (resource: any, name: any, counter: any) => {
 	counter.progress += resource.length;
-	await Promise.all(resource.map((path) => fetchJSONData(path.replace("@", "/"), name, counter)));
+	await Promise.all(resource.map((path: any) => fetchJSONData(path.replace("@", "/"), name, counter)));
 	status.progress = status.progress - resource.length;
 };
 
-const fetchJSONData = async (fileName, name, counter) => {
+const fetchJSONData = async (fileName: any, name: any, counter: any) => {
 	const jsonData = await fetch(`${fileName}.json`, {
 		headers: {
 			"Content-Type": "application/json",
@@ -82,23 +81,32 @@ const linkTemp = () => {
 
 	temp.maps = {};
 
-	temp.maps.conditions = temp.actorconditions.reduce((obj, item) => Object.assign(obj, { [item.id]: item }), {});
-	temp.maps.categories = temp.itemcategories.reduce((obj, item) => Object.assign(obj, { [item.id]: item }), {});
-	temp.maps.droplists = temp.droplists.reduce((obj, item) => Object.assign(obj, { [item.id]: item }), {});
-	temp.maps.items = temp.items.reduce((obj, item) => Object.assign(obj, { [item.id]: item }), {});
-	temp.maps.monsters = temp.monsters.reduce((obj, item) => Object.assign(obj, { [item.id]: item }), {});
-	temp.maps.conversations = temp.conversations.reduce((obj, item) => Object.assign(obj, { [item.id]: item }), {});
-	temp.maps.quests = temp.quests.reduce((obj, item) => Object.assign(obj, { [item.id]: item }), {});
+	temp.maps.conditions = temp.actorconditions.reduce(
+		(obj: any, item: any) => Object.assign(obj, { [item.id]: item }),
+		{}
+	);
+	temp.maps.categories = temp.itemcategories.reduce(
+		(obj: any, item: any) => Object.assign(obj, { [item.id]: item }),
+		{}
+	);
+	temp.maps.droplists = temp.droplists.reduce((obj: any, item: any) => Object.assign(obj, { [item.id]: item }), {});
+	temp.maps.items = temp.items.reduce((obj: any, item: any) => Object.assign(obj, { [item.id]: item }), {});
+	temp.maps.monsters = temp.monsters.reduce((obj: any, item: any) => Object.assign(obj, { [item.id]: item }), {});
+	temp.maps.conversations = temp.conversations.reduce(
+		(obj: any, item: any) => Object.assign(obj, { [item.id]: item }),
+		{}
+	);
+	temp.maps.quests = temp.quests.reduce((obj: any, item: any) => Object.assign(obj, { [item.id]: item }), {});
 	temp.maps.spawngroups = {};
 	temp.maps.containers = {};
 	temp.maps.scripts = {};
 
-	temp.actorconditions.forEach((condition) => {
+	temp.actorconditions.forEach((condition: any) => {
 		condition.iconBg = 1;
 		condition.rootLink = "/conditions#";
 	});
 
-	temp.items.forEach((item, index) => {
+	temp.items.forEach((item: any, index: any) => {
 		if (temp.maps.items[item.id] !== item) {
 			console.warn("More than one item with id '" + item.id + "'");
 			console.warn(item);
@@ -127,9 +135,9 @@ const linkTemp = () => {
 		}
 	});
 
-	temp.items = temp.items.filter((e) => e);
+	temp.items = temp.items.filter((e: any) => e);
 
-	temp.containers.forEach((container) => {
+	temp.containers.forEach((container: any) => {
 		container.iconID = "items_g03_package_omi1:0";
 		container.id = container.name;
 		container.droplistLink = temp.maps.droplists[container.name];
@@ -140,8 +148,8 @@ const linkTemp = () => {
 		}
 	});
 
-	temp.droplists.forEach((droplist) => {
-		droplist.items.forEach((item) => {
+	temp.droplists.forEach((droplist: any) => {
+		droplist.items.forEach((item: any) => {
 			item.droplist = droplist;
 			item.link = temp.maps.items[item.itemID];
 			item.link.droplists = item.link.droplists || [];
@@ -151,7 +159,7 @@ const linkTemp = () => {
 	});
 };
 
-const getItemIconBg = (o) => {
+const getItemIconBg = (o: any) => {
 	switch (o.displaytype) {
 		case "legendary":
 			return -4;
@@ -166,13 +174,13 @@ const getItemIconBg = (o) => {
 	}
 };
 
-const getItemRootLink = (category) => {
+const getItemRootLink = (category: any) => {
 	if (category.actionType == "use") return "/items/use#";
 	if (category.actionType == "equip") return "/items/" + category.inventorySlot + "#";
 	return "/items/other#";
 };
 
-const countConditions = (effect, item?, type?) => {
+const countConditions = (effect: any) => {
 	let count = effect?.addedConditions?.length || 0;
 	count += effect?.conditionsTarget?.length || 0;
 	count += effect?.conditionsSource?.length || 0;
@@ -181,25 +189,25 @@ const countConditions = (effect, item?, type?) => {
 	return count;
 };
 
-const linkConditions = (effect, item, type) => {
-	effect?.addedConditions?.forEach((e) => linkCondition(e, item, type, "On source"));
-	effect?.conditionsTarget?.forEach((e) => linkCondition(e, item, type, "On target"));
-	effect?.conditionsSource?.forEach((e) => linkCondition(e, item, type, "On source"));
+const linkConditions = (effect: any, item: any, type: any) => {
+	effect?.addedConditions?.forEach((e: any) => linkCondition(e, item, type, "On source"));
+	effect?.conditionsTarget?.forEach((e: any) => linkCondition(e, item, type, "On target"));
+	effect?.conditionsSource?.forEach((e: any) => linkCondition(e, item, type, "On source"));
 };
 
-const linkCondition = (condition, item, type, aim) => {
+const linkCondition = (condition: any, item: any, type: any, aim: any) => {
 	condition.link = temp.maps.conditions[condition.condition];
 	condition.link.links = condition.link.links || [];
 	const stub = getStub(item, condition, type, aim);
 	condition.link.links.push(stub);
 };
 
-const getStub = (item, condition, type, aim) => {
+const getStub = (item: any, condition: any, type: any, aim: any) => {
 	const { id, name, category, iconID, displaytype, rootLink } = item;
 	const { chance, duration, magnitude } = condition;
 	return { id, name, category, iconID, displaytype, chance, duration, magnitude, type, aim, rootLink };
 };
 
-const unique = (item, pos, self) => {
+const unique = (item: any, pos: any, self: any) => {
 	return self.indexOf(item) == pos;
 };

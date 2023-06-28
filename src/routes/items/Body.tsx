@@ -1,8 +1,6 @@
-import { ItemIcon, ItemTable } from "@/components";
-import { Item } from "@/data";
-import { createColumnHelper } from "@tanstack/react-table";
+import { ItemTable } from "@/components";
+import { Item, databaseAtom } from "@/data";
 import { useAtomValue } from "jotai";
-import { databaseAtom } from "@/data";
 import { useEffect, useState } from "react";
 import { columns } from ".";
 

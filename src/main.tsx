@@ -1,12 +1,12 @@
+import { ErrorPage } from "@/components";
+import { databaseAtom } from "@/data";
+import { load } from "@/lib";
+import { Body, Feet, Hand, Head, Home, Items, LeftRing, Neck, Other, Shield, Use, Weapon } from "@/routes";
+import { getDefaultStore } from "jotai";
 import React from "react";
 import ReactDOM from "react-dom/client";
-import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import { RouterProvider, createBrowserRouter } from "react-router-dom";
 import "./index.css";
-import { getDefaultStore } from "jotai";
-import { Armor, Body, Feet, Hand, Head, Home, Items, LeftRing, Neck, Other, Shield, Use, Weapon } from "@/routes";
-import { load } from "@/lib";
-import { databaseAtom } from "@/data";
-import { ErrorPage, NewTable } from "./components";
 
 const defaultStore = getDefaultStore();
 
