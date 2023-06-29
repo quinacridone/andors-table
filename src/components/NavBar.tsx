@@ -48,19 +48,10 @@ export const NavBar = () => {
 					</label>
 					<ul
 						tabIndex={0}
-						className="menu-sm dropdown-content menu rounded-box z-[100] mt-3 w-52 bg-base-100 p-2 shadow">
-						{menuItems.map(({ label, path, subMenu }) => (
+						className="dropdown-content menu rounded-box menu-sm z-[100] mt-3 w-52 bg-base-100 p-2 shadow">
+						{menuItems.map(({ label, path }) => (
 							<li key={path}>
 								<Link to={`${path}`}>{label}</Link>
-								{subMenu && subMenu.length > 0 && (
-									<ul className="p-2">
-										{subMenu.map((item) => (
-											<li key={item.path}>
-												<Link to={`${path}/${item.path}`}>{item.label}</Link>
-											</li>
-										))}
-									</ul>
-								)}
 							</li>
 						))}
 					</ul>

@@ -5,7 +5,7 @@ import { Body, Feet, Hand, Head, Home, Items, LeftRing, Neck, Other, Shield, Use
 import { getDefaultStore } from "jotai";
 import React from "react";
 import ReactDOM from "react-dom/client";
-import { RouterProvider, createBrowserRouter, createHashRouter } from "react-router-dom";
+import { RouterProvider, createHashRouter } from "react-router-dom";
 import "./index.css";
 
 const defaultStore = getDefaultStore();
